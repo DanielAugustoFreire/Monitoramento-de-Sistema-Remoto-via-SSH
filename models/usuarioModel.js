@@ -1,21 +1,18 @@
-let usuarios = [
-    {   "id": 1,
-        "nome": "Fulvio Fanelli",
-        "email": "fulvio@unoeste.br",
-        "cidade": "Presidente Prudente",
-        "estado": "SP"
-    },
-    {   
-        "id": 2,
-        "nome": "Fulano Fanelli",
-        "email": "fulano@unoeste.br",
-        "cidade": "Presidente Prudente",
-        "estado": "SP"
-    }
-]
-
-
 export default class UsuarioModel {
+    #id;
+    #nome;
+    #email;
+    #senha;
+
+    constructor(id, nome, email, senha) {
+        this.#id = id;
+        this.#nome = nome;
+        this.#email = email;
+        this.#senha = senha;
+    }
+
+    get id() { return this.#id; }get nome() { return this.#nome; }get email() { return this.#email; }get senha() { return this.#senha; }
+    set id(id) { this.#id = id; }set nome(nome) { this.#nome = nome; }set email(email) { this.#email = email; }set senha(senha) { this.#senha = senha; }
 
     listar() {
         return usuarios;

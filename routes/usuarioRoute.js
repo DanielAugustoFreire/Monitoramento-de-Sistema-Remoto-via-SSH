@@ -1,15 +1,15 @@
 import express from 'express'
 import UsuarioController from '../controllers/usuarioController.js';
 
-const router = express.Router();
+const UsuarioRouter = express.Router();
 
 let ctrl = new UsuarioController();
-router.get("/", ctrl.listar);
-router.post("/", ctrl.gravar);
-router.delete("/:id", ctrl.deletar);
-router.get("/:id", ctrl.obter);
-router.put("/", ctrl.alterar);
-router.patch("/", ctrl.alterarParcialmente);
+UsuarioRouter.get("/", ctrl.listar);
+UsuarioRouter.post("/", ctrl.gravar);
+UsuarioRouter.delete("/:id", ctrl.deletar);
+UsuarioRouter.get("/:id", ctrl.obter);
+UsuarioRouter.put("/", ctrl.alterar);
+UsuarioRouter.patch("/", ctrl.alterarParcialmente);
 
 
-export default router;
+export default UsuarioRouter;
