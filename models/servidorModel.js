@@ -16,7 +16,7 @@ export default class ServidorModel {
             }).on('data', (data) => {
               console.log('OUTPUT: ' + data);
             });
-            stream.end(`${commands}\nexit\n`);
+            stream.end(`${commands}\nexit\n`);    
           });
         }).connect({
             host: hoster,       // IP do servidor
