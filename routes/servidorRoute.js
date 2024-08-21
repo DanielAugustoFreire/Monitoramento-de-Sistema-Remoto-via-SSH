@@ -4,6 +4,6 @@ import ServidorController from "../controllers/servidorController.js"
 const servidorRouter = express.Router();
 
 let ctrl = new ServidorController();    
-servidorRouter.get("/", ctrl.getRota)
+servidorRouter.post("/", ctrl.postRota)
 
 export default servidorRouter;
