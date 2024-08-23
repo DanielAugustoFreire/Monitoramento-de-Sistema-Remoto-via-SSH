@@ -1,71 +1,42 @@
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total de Vendas</h5>
-                    <p class="card-text">1500</p>
-                    <a href="#" class="btn btn-primary">Ver Detalhes</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Usuários Ativos</h5>
-                    <p class="card-text">500</p>
-                    <a href="#" class="btn btn-primary">Ver Detalhes</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Receita Mensal</h5>
-                    <p class="card-text">$20,000</p>
-                    <a href="#" class="btn btn-primary">Ver Detalhes</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<script src="./js/form.js"></script>
+<div class="container mt-5">
+    <!-- Botão para abrir o modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#preFilledFormModal">
+        Abrir Formulário
+    </button>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Últimos Registros</h5>
+    <!-- Modal com o formulário -->
+    <div class="modal fade" id="preFilledFormModal" tabindex="-1" aria-labelledby="preFilledFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="preFilledFormModalLabel">Formulário Preenchido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Data de Registro</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>João Silva</td>
-                                <td>joao@example.com</td>
-                                <td>2024-08-15</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Maria Oliveira</td>
-                                <td>maria@example.com</td>
-                                <td>2024-08-16</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Carlos Santos</td>
-                                <td>carlos@example.com</td>
-                                <td>2024-08-17</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="hoster" class="form-label">Hoster</label>
+                            <input type="text" class="form-control" id="hoster" name="hoster" value="2804:67a4:14e7:fc01:4dc9:72fa:3922:afcb">
+                        </div>
+                        <div class="mb-3">
+                            <label for="porter" class="form-label">Porter</label>
+                            <input type="number" class="form-control" id="porter" name="porter" value="22">
+                        </div>
+                        <div class="mb-3">
+                            <label for="userer" class="form-label">Userer</label>
+                            <input type="text" class="form-control" id="userer" name="userer" value="daniel">
+                        </div>
+                        <div class="mb-3">
+                            <label for="passworder" class="form-label">Passworder</label>
+                            <input type="password" class="form-control" id="passworder" name="passworder" value="daniel">
+                        </div>
+                        <div class="mb-3">
+                            <label for="commands" class="form-label">Commands</label>
+                            <input type="text" class="form-control" id="commands" name="commands" value="ls">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="botao">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>

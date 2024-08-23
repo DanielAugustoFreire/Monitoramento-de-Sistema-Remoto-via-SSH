@@ -10,6 +10,10 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 app.set("layout", "./layout");
 
+app.use(express.static('public'));
+
+
+app.use('/static', express.static(path.join('node_modules/bootstrap/dist')));
 app.use('/static', express.static(path.join('node_modules/bootstrap/dist')));
 app.use(express.json())
 app.use(expressEjsLayout);
