@@ -24,14 +24,14 @@ O projeto segue a arquitetura MVC (Model-View-Controller):
 
 ### Funcionalidades Básicas
 - **Conexão SSH:**
-  - Adicionar e configurar conexões SSH com múltiplos servidores.
-  - Suporte para autenticação por senha e chave pública.
+  - Adicionar conexão em servidor SSH atraves de ip(ipv4 && ipv6).
+  - Suporte para autenticação por senha.
   
 - **Monitoramento em Tempo Real:**
   - Exibir uso de CPU (%), memória (%), espaço em disco (%), processos em execução e uptime do servidor.
   
 - **Execução Remota de Comandos:**
-  - Permitir a execução de comandos personalizados nos servidores conectados.
+  - Permitir a execução de comandos personalizados no servidor conectados.
   - Exibir o resultado dos comandos no painel.
 
 - **Alertas e Notificações:**
