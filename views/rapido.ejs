@@ -1,44 +1,55 @@
-<script src="./js/form.js"></script>
-<div class="container mt-5">
-    <!-- Botão para abrir o modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#preFilledFormModal">
-        Abrir Formulário
-    </button>
-
-    <!-- Modal com o formulário -->
-    <div class="modal fade" id="preFilledFormModal" tabindex="-1" aria-labelledby="preFilledFormModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="preFilledFormModalLabel">Formulário Preenchido</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Conectar</title>
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Espaço da Lousa -->
+            <div class="col-md-8">
+                <div class="position-relative bg-secondary border border-light" style="height: 300px;">
+                    <!-- Ícones de Pasta -->
+                    <div class="d-flex flex-wrap p-3" id="Lousa_Pastas">
+                        <!-- Ícones de pasta serão inseridos aqui -->
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="hoster" class="form-label">Hoster</label>
-                            <input type="text" class="form-control" id="hoster" name="hoster" value="2804:67a4:14e7:fc01:4dc9:72fa:3922:afcb">
-                        </div>
-                        <div class="mb-3">
-                            <label for="porter" class="form-label">Porter</label>
-                            <input type="number" class="form-control" id="porter" name="porter" value="22">
-                        </div>
-                        <div class="mb-3">
-                            <label for="userer" class="form-label">Userer</label>
-                            <input type="text" class="form-control" id="userer" name="userer" value="daniel">
-                        </div>
-                        <div class="mb-3">
-                            <label for="passworder" class="form-label">Passworder</label>
-                            <input type="password" class="form-control" id="passworder" name="passworder" value="daniel">
-                        </div>
-                        <div class="mb-3">
-                            <label for="commands" class="form-label">Commands</label>
-                            <input type="text" class="form-control" id="commands" name="commands" value="ls">
-                        </div>
-                        <button class="btn btn-primary" id="botao">Enviar</button>
-                    </form>
+            </div>
+
+            <!-- Formulário ao lado direito -->
+            <div class="col-md-4">
+                <div class="bg-secondary border border-light p-3">
+                    <h5 class="mb-3">Conectar ao Servidor</h5>
+                    <div class="mb-3">
+                        <label for="hoster" class="form-label">Hoster</label>
+                        <input type="text" class="form-control bg-dark text-white" id="hoster" name="hoster" value="2804:67a4:14e7:fc01:3900:3071:56e:3ba8">
+                    </div>
+                    <div class="mb-3">
+                        <label for="porter" class="form-label">Porter</label>
+                        <input type="number" class="form-control bg-dark text-white" id="porter" name="porter" value="22">
+                    </div>
+                    <div class="mb-3">
+                        <label for="userer" class="form-label">Userer</label>
+                        <input type="text" class="form-control bg-dark text-white" id="userer" name="userer" value="daniel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="passworder" class="form-label">Passworder</label>
+                        <input type="password" class="form-control bg-dark text-white" id="passworder" name="passworder" value="daniel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="commands" class="form-label">Commands</label>
+                        <input type="text" class="form-control bg-dark text-white" id="commands" name="commands" value="ls">
+                    </div>
+                    <button class="btn btn-warning w-100" id="botao">Enviar</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/form.js"></script>
+</body>
+</html>

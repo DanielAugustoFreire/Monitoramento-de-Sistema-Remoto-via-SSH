@@ -20,12 +20,15 @@ export default class ServidorController {
 
     async postRota(req, res) {
         try {
-            let { hoster, porter, userer, passworder, commands } = req.body;
+            let { hoster, porter, userer, passworder, commands, pilha } = req.body;
             if (hoster && porter && userer && passworder) {
                 let server = new ServidorModel();
                 let pastas = await server.ConectInicial(hoster, porter, userer, passworder, commands);
                 // Se pastas for um número, pode ser melhor retorná-lo dentro de um objeto
-                res.status(200).json(pastas); 
+                res.status(200).json({
+                    pastas: pastas,
+                    pilha: pilha
+                });
             } else {
                 res.status(400).json("Parâmetros preenchidos incorretamente");
             }
