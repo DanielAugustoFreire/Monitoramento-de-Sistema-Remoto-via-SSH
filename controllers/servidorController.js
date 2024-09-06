@@ -9,13 +9,17 @@ export default class ServidorController {
             res.status(500).json({msg : ex.message})
         }
     }
-    sucesso(req,res){
-        try{
-            res.render(`sucesso.ejs`)
-        }catch(ex){
-            res.status(500).json({msg : ex.message})
+
+    async pegarDiretorio(req, res) {
+        try {
+            let servidorModel = new ServidorModel()
+            const diretorio = await servidorModel.obterDiretorioAtual(); // Obtém o diretório atual
+            res.status(200).json( diretorio )// Renderiza a view e passa o diretório
+        } catch (ex) {
+            res.status(500).json({ msg: ex.message }); // Retorna erro em caso de falha
         }
     }
+    
 
 
     async postRota(req, res) {
@@ -24,7 +28,7 @@ export default class ServidorController {
         let pi;
         if(pilha >= 3){
             pi = 3;
-        }eles{
+        }else{
             pi = pilha;
         }
             if (hoster && porter && userer && passworder) {

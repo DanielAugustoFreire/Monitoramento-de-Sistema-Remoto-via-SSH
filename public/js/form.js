@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     var BtnConfirmar = document.getElementById('botao');
     BtnConfirmar.addEventListener('click', conectar);
+    var InputTerminal = document.getElementById('terminal').addEventListener('keydown', conectar)
 
     function repeatCommand(command, times) {
         return Array(times).fill(command).join(' ');
     }
 
-    function carregarPastas(lista_pastas, pilha) {
+    function carregar(lista_pastas, pilha) {
         let html = `<div class="me-3 mb-3 text-center">
                     <a href="#" class="text-decoration-none voltar">
                         <i class="fas fa-folder fa-2x text-warning"></i>
@@ -29,14 +30,81 @@ document.addEventListener('DOMContentLoaded', function () {
         let Pastas_Lousas_HTML = document.getElementById(`Lousa_Pastas`);
         Pastas_Lousas_HTML.innerHTML = html;
 
+        document.getElementById('hoster').disabled = true;
+        document.getElementById('porter').disabled = true;
+        document.getElementById('userer').disabled = true;
+        document.getElementById('passworder').disabled = true;
+        document.getElementById('commands').disabled = true;
+
+
         // Adicionando o evento de clique para "voltar"
         document.querySelector('.voltar').addEventListener('click', function (event) {
             event.preventDefault();
             conectar_voltando_n(pilha)
         });
+
+        const elementosAvancar = document.querySelectorAll('.avancar');
+
+        elementosAvancar.forEach(elemento => {
+          elemento.addEventListener('click', function(event) {
+            let id = this.id
+            event.preventDefault();
+            conectar_avancando_n(pilha, id);
+          });
+        });
+    }
+    
+    function conectar_avancando_n(pilha, id){
+        let pi = pilha + 1;
+        let commands = `cd ${id};`
+        commands += "ls"
+
+
+        let formDataObj = {
+            hoster: document.getElementById("hoster").value,
+            porter: document.getElementById("porter").value,
+            userer: document.getElementById("userer").value,
+            passworder: document.getElementById("passworder").value,
+            commands: commands,
+            pilha: pi
+        };
+
+        fetch("/", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formDataObj)
+        })
+        .then(response => {
+            if (!response.ok) {
+                switch (response.status) {
+                    case 400:
+                        throw new Error("Parâmetros preenchidos incorretamente.");
+                    case 500:
+                        throw new Error("Erro interno do servidor.");
+                    default:
+                        throw new Error(`Erro inesperado: ${response.status}`);
+                }
+            }
+            return response.json();
+        })
+        .then(res => {
+            if (res && res.pastas && res.pastas.data) {
+                const data = res.pastas.data;
+                carregar(data, res.pilha);
+            } else {
+                throw new Error("A estrutura da resposta não está conforme o esperado.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao enviar formulário:", error);
+            alert(error.message);
+        });
     }
 
     function conectar_voltando_n(pilha) {
+        debugger
         let pi = pilha
         let commands = repeatCommand('cd .. ;', pilha);
         commands += " ls"
@@ -79,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(res => {
             if (res && res.pastas && res.pastas.data) {
                 const data = res.pastas.data;
-                carregarPastas(data, res.pilha);
+                carregar(data, res.pilha);
             } else {
                 throw new Error("A estrutura da resposta não está conforme o esperado.");
             }
@@ -124,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(res => {
             if (res && res.pastas && res.pastas.data) {
                 const data = res.pastas.data;
-                carregarPastas(data, res.pilha);
+                carregar(data, res.pilha);
             } else {
                 throw new Error("A estrutura da resposta não está conforme o esperado.");
             }
