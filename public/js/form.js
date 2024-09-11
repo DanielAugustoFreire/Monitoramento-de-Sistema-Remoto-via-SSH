@@ -19,13 +19,20 @@ document.addEventListener('DOMContentLoaded', function () {
         let size = pastas_tratadas.length - 1; // Ele separa sempre mais Uma que na realidade nao existe
 
         for (let i = 0; i < size; i++) {
+            let depois = pastas_tratadas[i].split(".");
+            let depoisdoponto = depois[1] ?? 'folder';
+            
+            // Verifica se é um arquivo de texto ou uma pasta
+            let icon = (depoisdoponto === 'txt') ? 'fas fa-file-alt text-white' : 'fas fa-folder text-warning';
+            
             html += `<div class="me-3 mb-3 text-center">
-                    <a href="#" class="text-decoration-none avancar" id="${pastas_tratadas[i]}">
-                        <i class="fas fa-folder fa-2x text-warning"></i>
-                        <div class="text-white mt-1">${pastas_tratadas[i]}</div>
-                    </a>
-                </div>`;
+                        <a href="#" class="text-decoration-none avancar" id="${pastas_tratadas[i]}">
+                            <i class="${icon} fa-2x "></i>
+                            <div class="text-white mt-1">${pastas_tratadas[i]}</div>
+                        </a>
+                    </div>`;
         }
+        
 
         let Pastas_Lousas_HTML = document.getElementById(`Lousa_Pastas`);
         Pastas_Lousas_HTML.innerHTML = html;
@@ -54,12 +61,53 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
+    function carregarText(retorno_data){
+            let html = `<div class="me-3 mb-3 text-center">
+            <a href="#" class="text-decoration-none voltar">
+                <i class="fas fa-folder fa-2x text-warning"></i>
+                <div class="text-white mt-1">..</div>
+            </a>
+            </div>`;
+
+            html += `
+            <div class="content-data text-white p-3 rounded bg-dark">
+                <i class="fas fa-file-alt fa-2x text-info me-2"></i>
+                ${retorno_data}
+            </div>
+        `;
+
+            let Pastas_Lousas_HTML = document.getElementById(`Lousa_Pastas`);
+            Pastas_Lousas_HTML.innerHTML = html;
+
+            document.getElementById('hoster').disabled = true;
+            document.getElementById('porter').disabled = true;
+            document.getElementById('userer').disabled = true;
+            document.getElementById('passworder').disabled = true;
+            document.getElementById('commands').disabled = true;
+
+
+            // Adicionando o evento de clique para "voltar"
+            document.querySelector('.voltar').addEventListener('click', function (event) {
+            event.preventDefault();
+            conectar_voltando_n(pilha)
+            });
+    }
+
     function conectar_avancando_n(pilha, id){
-        let pi = pilha + 1;
-        let commands = `cd ${id};`
-        commands += "ls"
+        let depois = id.split(".");
+        let commands
+        let pi
 
 
+        if(depois[1]){
+            commands = `cat ${id}`;
+        }else{
+            pi = pilha + 1;
+            commands = `cd ${id};`
+            commands += "ls"
+        }
+
+        debugger
         let formDataObj = {
             hoster: document.getElementById("hoster").value,
             porter: document.getElementById("porter").value,
@@ -90,9 +138,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(res => {
-            if (res && res.pastas && res.pastas.data) {
-                const data = res.pastas.data;
-                carregar(data, res.pilha);
+            debugger
+            if (res && res.retorno && res.retorno.data) {
+                const data = res.retorno.data;
+                if(res.isText){
+                    carregarText(data)
+                }else{
+                    carregar(data, res.pilha);
+                }
             } else {
                 throw new Error("A estrutura da resposta não está conforme o esperado.");
             }
@@ -145,8 +198,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(res => {
-            if (res && res.pastas && res.pastas.data) {
-                const data = res.pastas.data;
+            if (res && res.retorno && res.retorno.data) {
+                const data = res.retorno.data;
                 carregar(data, res.pilha);
             } else {
                 throw new Error("A estrutura da resposta não está conforme o esperado.");
@@ -190,8 +243,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(res => {
-            if (res && res.pastas && res.pastas.data) {
-                const data = res.pastas.data;
+            if (res && res.retorno && res.retorno.data) {
+                const data = res.retorno.data;
                 carregar(data, res.pilha);
             } else {
                 throw new Error("A estrutura da resposta não está conforme o esperado.");

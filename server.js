@@ -22,6 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/usuarios", routerUsuarios);
 app.use("/", routerServidores);
 
-app.listen(5000, function() {
+app.listen(5001, function() {
     console.log("servidor web em funcionamento!");
 });

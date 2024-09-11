@@ -33,12 +33,22 @@ export default class ServidorController {
         }
             if (hoster && porter && userer && passworder) {
                 let server = new ServidorModel();
-                let pastas = await server.ConectInicial(hoster, porter, userer, passworder, commands);
+                let retorno = await server.ConectInicial(hoster, porter, userer, passworder, commands);
                 // Se pastas for um número, pode ser melhor retorná-lo dentro de um objeto
-                res.status(200).json({
-                    pastas: pastas,
-                    pilha: pi
-                });
+
+                if(commands.includes("cat")){
+                    res.status(200).json({
+                        retorno: retorno,
+                        pilha: pi,
+                        isText: true
+                    });
+                }
+                else{
+                    res.status(200).json({
+                        retorno: retorno,
+                        pilha: pi
+                    });
+                }
             } else {
                 res.status(400).json("Parâmetros preenchidos incorretamente");
             }

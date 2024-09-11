@@ -7,7 +7,11 @@
     <title>Conectar</title>
 </head>
 <body class="bg-dark text-white">
+
     <div class="container mt-5">
+        <small class="text-warning d-block mt-2">
+            For file display, we rely on what appears after the dot (.). If a file does not have an extension like <code>.txt </code> but is actually a text file, it may be displayed as a folder.
+        </small>
         <div class="row">
             <!-- Espaço da Lousa -->
             <div class="col-md-8">
@@ -29,7 +33,7 @@
                     <h5 class="mb-3">Conectar ao Servidor</h5>
                     <div class="mb-3">
                         <label for="hoster" class="form-label">Hoster</label>
-                        <input type="text" class="form-control bg-dark text-white" id="hoster" name="hoster" value="2804:67a4:14fb:2301:9ff:d878:771f:21b6">
+                        <input type="text" class="form-control bg-dark text-white" id="hoster" name="hoster" value="2804:67a4:1402:9d01:3f22:e209:609b:ccee">
                     </div>
                     <div class="mb-3">
                         <label for="porter" class="form-label">Porter</label>
@@ -48,6 +52,7 @@
                         <input type="text" class="form-control bg-dark text-white" id="commands" name="commands" value="ls">
                     </div>
                     <button class="btn btn-warning w-100" id="botao">Enviar</button>
+                    <!-- Disclaimer -->
                 </div>
             </div>
         </div>
